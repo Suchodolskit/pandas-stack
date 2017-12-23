@@ -130,7 +130,7 @@ def get_xml_file_names(xml_root_dir_name: str) -> list:
     """   
     Get xml file names from directory. 
         
-    :param xml_root_dir_name: Directory name where stack overflow xmls are placed. 
+    :param xml_root_dir_name: Directory name where stack exchange xmls are placed. 
     :return: A list containing those xmls names.
     """
 
