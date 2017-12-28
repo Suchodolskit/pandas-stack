@@ -109,12 +109,16 @@ def remove_tags_from_html_text(html_text: str) -> str:
 
 def fix_data_frame_column_type(data_frame: pd.DataFrame, type_by_col_dict: dict):
     """
-    Fix data frame columns type
+    Fixes data frame columns type
     
     :param data_frame: A pandas data frame which is going to have column types fixed.
     :param type_by_col_dict: A dictionary {'column': 'type'} designating the columns type fixing.
     :return: None.
     """
+    
+    data_frame_cols_set = set(data_frame.columns)
+    for type_col in type_by_col_dict:
+        type_by_col_dict[type_col] = sorted(set(type_by_col_dict[type_col]).intersection(data_frame_cols_set))        
 
     for type_by_col, cols in type_by_col_dict.items():
         if type_by_col == 'int':
@@ -140,7 +144,7 @@ def fix_data_frame_column_type(data_frame: pd.DataFrame, type_by_col_dict: dict)
 
 def write_data_frame_to_disk(data_frame: pd.DataFrame, output_fn: str):
     """
-    Pickle serializes data frame and write it to disk.
+    Serializes data frame (in pickle format) and writes it to disk.
     
     :param data_frame: Pandas data frame to be serialized.
     :param output_fn: Output file name.
@@ -152,7 +156,7 @@ def write_data_frame_to_disk(data_frame: pd.DataFrame, output_fn: str):
 
 def get_xml_file_names(xml_root_dir_name: str) -> list:
     """   
-    Get xml file names from directory. 
+    Gets xml file names from directory. 
         
     :param xml_root_dir_name: Directory name where stack exchange xmls are placed. 
     :return: A list containing those xmls names.
@@ -199,7 +203,7 @@ def xml_to_data_frame(xml_fn: str):
 
 def xml_file_names_list_to_data_frames(xml_fn_list: list, nro_processes: int = 1):
     """
-    Given a xml file name list, this function maps that list to a set of processes in order to they read, parse, and
+    Given a xml file name list, this function maps that list to a set of processes which in turn read, parse, and
     write those files to disk in a parallel fashion.
     
     :param xml_fn_list: List of xml file names to be read, parsed an written to disk.
