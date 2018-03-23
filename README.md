@@ -1,5 +1,5 @@
 # pandas-stack
-<b>pandas-stack</b> is a script that converts stack exchange xmls files to pandas data frames and serializes those data frames to pickle format.
+<b>pandas-stack</b> is a script that converts stack exchange xml files to pandas data frames and serializes those data frames to pickle format.
 
 If you are interested in analyzing stack exchange data, you can download the xml files from https://archive.org/details/stackexchange. For instance, after you download the dataset and extract it to a directory named ```stack-data```, you only need to call:
 
